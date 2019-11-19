@@ -9,7 +9,7 @@
   
   <!-- Over here, we would check the AddAnalyzerFromNuGet condition to check whether we want to add it -->
   <ItemGroup Condition="$(_AddAnalyzerFromNuget)">
-    <Analyzer Include="$(MSBuildThisFileDirectory)\..\dotnet\analyzer\cs\analyzer.dll">
+    <Analyzer Include="$(MSBuildThisFileDirectory)\..\analyzers\dotnet\cs\analyzer.dll">
       <Visible>false</Visible>
     </Analyzer>
   </ItemGroup>

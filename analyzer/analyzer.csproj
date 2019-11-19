@@ -7,6 +7,8 @@
     <!-- We don't want to include any build output by default in the nuget package -->
     <!-- We manually add it to analyzers/dotnet/cs below -->
     <IncludeBuildOutput>false</IncludeBuildOutput>
+    <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+    <IncludeSymbols>false</IncludeSymbols>
 
     <!-- Automatically generate nupkg pack on build -->
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
