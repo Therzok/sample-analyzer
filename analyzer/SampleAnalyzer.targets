@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <!-- This property exists for the sole purpose of having a way to not inject the nuget -->
+    <!-- Would require some MSBuild conditions that check the version of the framework one -->
+    <!-- Or removes the analyzer item from the Xamarin.*.targets -->
+    <_AddAnalyzerFromNuget>true</_AddAnalyzerFromNuget>
+  </PropertyGroup>
+  
+  <!-- Over here, we would check the AddAnalyzerFromNuGet condition to check whether we want to add it -->
+  <ItemGroup Condition="$(_AddAnalyzerFromNuget)">
+    <Analyzer Include="$(MSBuildThisFileDirectory)\..\dotnet\analyzer\cs\analyzer.dll">
+      <Visible>false</Visible>
+    </Analyzer>
+  </ItemGroup>
+</Project>

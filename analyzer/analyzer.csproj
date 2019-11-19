@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+
+    <PackageId>SampleAnalyzer</PackageId>
+    <!-- We don't want to include any build output by default in the nuget package -->
+    <!-- We manually add it to analyzers/dotnet/cs below -->
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+
+    <!-- Automatically generate nupkg pack on build -->
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Needed for analyzer APIs -->
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="3.3.1" />
+  </ItemGroup>
+
+   <ItemGroup>
+    <!-- Place the analyzer into the right place in the nupkg, this is documented in roslyn-analyzers.readthedocs.io -->
+    <Content Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+    <!-- Place this in the build directory. NuGet will automatically import these targets as part of the build -->
+    <!-- Any targets file in the `build` directory that matches the packageid, will automatically be imported -->
+    <Content Include="$(PackageId).targets" Pack="true" PackagePath="build" Visible="false" />
+  </ItemGroup>
+</Project>
